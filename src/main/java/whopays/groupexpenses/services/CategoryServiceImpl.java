@@ -22,13 +22,6 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryCommand = categoryCommand;
     }
 
-/*    @Override
-    public Flux<CategoryCommand> findAllCategories() {
-        return categoryRepository
-                .findAll()
-                .map(categoryCommand::convert);
-    }*/
-
     @Override
     public Flux<Category> findAllCategories() {
         return categoryRepository.findAll();
@@ -38,10 +31,4 @@ public class CategoryServiceImpl implements CategoryService {
     public Mono<Category> findById(String id) {
         return categoryRepository.findById(id);
     }
-
-  /*  @Override
-    public Mono<CategoryCommand> findById(String id) {
-        return categoryRepository.findById(id)
-                .map(categoryCommand::convert);
-    }*/
 }

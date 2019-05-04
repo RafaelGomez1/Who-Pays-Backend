@@ -6,6 +6,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Getter
@@ -15,6 +18,10 @@ public class User {
 
     @Id
     private String id;
+
+    @NotNull
+    @NotBlank
+    @Size(max = 35)
     @Indexed(unique = true)
     private String username;
     private String password;

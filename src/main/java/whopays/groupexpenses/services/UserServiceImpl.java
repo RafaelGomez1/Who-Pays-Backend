@@ -1,5 +1,6 @@
 package whopays.groupexpenses.services;
 
+import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -7,40 +8,31 @@ import reactor.core.publisher.Mono;
 import whopays.groupexpenses.commands.UserCommand;
 import whopays.groupexpenses.converters.UserCommandToUser;
 import whopays.groupexpenses.converters.UserToUserCommand;
+import whopays.groupexpenses.models.User;
 import whopays.groupexpenses.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private final UserRepository userRepository;
-    @Autowired
-    private final UserToUserCommand userToUserCommand;
-    @Autowired
-    private final UserCommandToUser userCommandToUser;
 
-    public UserServiceImpl(UserRepository userRepository, UserToUserCommand userToUserCommand, UserCommandToUser userCommandToUser) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userToUserCommand = userToUserCommand;
-        this.userCommandToUser = userCommandToUser;
     }
 
     @Override
-    public Mono<UserCommand> createUser(UserCommand command) {
-      return userRepository.save(userCommandToUser.convert(command))
-              .map(userToUserCommand::convert);
+    public Mono<Void> createUser(User user) {
+        return userRepository.save(user).then();
     }
 
     @Override
-    public Mono<UserCommand> findById(String id) {
-        return userRepository.findById(id)
-                .map(userToUserCommand::convert);
+    public Mono<User> findById(String id) {
+        return userRepository.findById(id);
     }
 
     @Override
-    public Flux<UserCommand> findAll() {
-        return userRepository.findAll()
-                .map(userToUserCommand::convert);
+    public Flux<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
