@@ -1,16 +1,17 @@
 package whopays.groupexpenses.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.commands.CategoryCommand;
+import whopays.groupexpenses.models.Category;
 import whopays.groupexpenses.services.CategoryService;
 
-import java.awt.*;
-
 @RestController
-@RequestMapping("categories")
+@EnableAutoConfiguration
+@Component
 public class CategoryController {
 
     @Autowired
@@ -20,15 +21,15 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
-    public Mono<CategoryCommand> getCategory(@PathVariable("categoryId") String categoryID) {
-        Mono<CategoryCommand> command = this.categoryService.findById(categoryID);
+    @GetMapping("categories/{categoryID}")
+    public Mono<Category> getCategory(@PathVariable String categoryID) {
+        Mono<Category> command = this.categoryService.findById(categoryID);
         return command;
     }
 
-    @GetMapping()
-    public Flux<CategoryCommand> getAllCategories() {
-        Flux<CategoryCommand> command = this.categoryService.findAllCategories();
+    @GetMapping("categories")
+    public Flux<Category> getAllCategories() {
+        Flux<Category> command = this.categoryService.findAllCategories();
         return command;
     }
 }

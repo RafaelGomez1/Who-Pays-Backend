@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import whopays.groupexpenses.commands.CategoryCommand;
 import whopays.groupexpenses.converters.CategoryToCategoryCommand;
+import whopays.groupexpenses.models.Category;
 import whopays.groupexpenses.repositories.CategoryRepository;
 
 @Service
@@ -21,16 +22,26 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryCommand = categoryCommand;
     }
 
-    @Override
+/*    @Override
     public Flux<CategoryCommand> findAllCategories() {
         return categoryRepository
                 .findAll()
                 .map(categoryCommand::convert);
+    }*/
+
+    @Override
+    public Flux<Category> findAllCategories() {
+        return categoryRepository.findAll();
     }
 
     @Override
+    public Mono<Category> findById(String id) {
+        return categoryRepository.findById(id);
+    }
+
+  /*  @Override
     public Mono<CategoryCommand> findById(String id) {
         return categoryRepository.findById(id)
                 .map(categoryCommand::convert);
-    }
+    }*/
 }

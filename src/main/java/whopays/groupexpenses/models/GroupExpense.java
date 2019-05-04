@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-@Document
+@Document("GroupExpenses")
 public class GroupExpense {
 
     @Id
@@ -18,10 +18,8 @@ public class GroupExpense {
     private String concept;
     private long totalQuantity;
 
-    @DBRef
     private Map<User, Integer> debtors;
 
-    @DBRef
     private Map<User, Integer> payers;
     private Date date;
     private Category categoryId;
