@@ -1,15 +1,13 @@
-package whopays.groupexpenses.models;
+package whopays.groupexpenses.commands;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
 @Setter
-@Document
-public class Category {
-    @Id
+@Getter
+@NoArgsConstructor
+public class CategoryCommand {
     private String id;
     private String name;
 
@@ -28,4 +26,5 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
 }

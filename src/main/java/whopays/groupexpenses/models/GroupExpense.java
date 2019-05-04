@@ -24,6 +24,6 @@ public class GroupExpense {
     @DBRef
     private Map<User, Integer> payers;
     private Date date;
-    private Category category;
+    private Category categoryId;
 
 }
