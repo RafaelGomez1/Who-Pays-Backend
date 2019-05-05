@@ -8,10 +8,10 @@ import whopays.groupexpenses.models.Group;
 import whopays.groupexpenses.models.User;
 
 @Repository
-public interface GroupRepository extends ReactiveMongoRepository<Group, String> {
+public interface GroupRepository extends ReactiveMongoRepository<Group, String>, GroupCustomRepository {
 
     Flux<User> findAllUsersById(String id);
 
-    @Query("{ 'members': { 'username' : 'pepito'}}")
-    Flux<User> findAllMembersId();
+//    @Query("{ 'members': { 'username' : 'pepito'}}")
+//    Flux<User> findAllMembersId();
 }

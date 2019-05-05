@@ -23,7 +23,7 @@ public class User {
     @NotNull
     @NotBlank
     @Size(max = 35)
-    @Indexed()
+    @Indexed
     private String username;
     private String password;
     private List<Group> groupsList;

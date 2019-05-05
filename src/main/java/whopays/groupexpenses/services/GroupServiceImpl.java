@@ -45,6 +45,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Flux<User> getAllGroupMembers(String id) {
-        return groupRepository.findAllMembersId();
+        Flux<User> users = groupRepository.findAllMembersId(id);
+        return users;
     }
 }
