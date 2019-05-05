@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -18,14 +20,13 @@ public class User {
 
     @Id
     private String id;
-
     @NotNull
     @NotBlank
     @Size(max = 35)
-    @Indexed(unique = true)
+    @Indexed()
     private String username;
     private String password;
-    private Set<String> groupsId;
+    private List<Group> groupsList;
 
     public String getId() {
         return id;
@@ -51,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getGroupsId() {
-        return groupsId;
+    public List<Group> getGroupsList() {
+        return groupsList;
     }
 
-    public void setGroupsId(Set<String> groupsId) {
-        this.groupsId = groupsId;
+    public void setGroupsList(List<Group> groupsList) {
+        this.groupsList = groupsList;
     }
 }
