@@ -17,8 +17,8 @@ public class Group {
     private String id;
     private String groupName;
     private Date creationDate;
-    private List<User> members;
-    private List<User> admins;
+    private List<GroupUser> members;
+    private List<GroupUser> admins;
     private List<GroupExpense> groupExpenses;
 
     public String getId() {
@@ -45,19 +45,19 @@ public class Group {
         this.creationDate = creationDate;
     }
 
-    public List<User> getMembers() {
+    public List<GroupUser> getMembers() {
         return members;
     }
 
-    public void setMembers(List<User> members) {
+    public void setMembers(List<GroupUser> members) {
         this.members = members;
     }
 
-    public List<User> getAdmins() {
+    public List<GroupUser> getAdmins() {
         return admins;
     }
 
-    public void setAdmins(List<User> admins) {
+    public void setAdmins(List<GroupUser> admins) {
         this.admins = admins;
     }
 

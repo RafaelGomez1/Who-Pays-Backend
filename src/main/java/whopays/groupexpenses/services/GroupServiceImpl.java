@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import whopays.groupexpenses.models.Group;
-import whopays.groupexpenses.models.User;
 import whopays.groupexpenses.repositories.GroupRepository;
 
 @Service
@@ -19,8 +18,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Mono<Void> createGroup(Group group) {
-        return groupRepository.save(group).then();
+    public Mono<Group> createGroup(Group group) {
+        return groupRepository.save(group).thenReturn(group);
     }
 
     @Override
@@ -36,16 +35,5 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void deleteById(String id) {
         groupRepository.deleteById(id).block();
-    }
-
-    @Override
-    public Mono<Void> addUserToGroup(String userId, String groupId) {
-        return null;
-    }
-
-    @Override
-    public Flux<User> getAllGroupMembers(String id) {
-        Flux<User> users = groupRepository.findAllMembersId(id);
-        return users;
     }
 }

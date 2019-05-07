@@ -13,7 +13,7 @@ public class GroupCustomRepositoryImpl implements GroupCustomRepository {
     ReactiveMongoTemplate mongoTemplate;
 
     @Override
-    public Flux<User> findAllMembersId(String groupId) {
+    public Flux<User> findAllMembersIdParam(String groupId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(groupId));
         query.fields().include("members");

@@ -5,5 +5,7 @@ import whopays.groupexpenses.models.User;
 
 public interface GroupCustomRepository {
 
-    Flux<User> findAllMembersId(String groupId);
+  Flux<User> findAllMembersIdParam(String groupId);
+
+
 }

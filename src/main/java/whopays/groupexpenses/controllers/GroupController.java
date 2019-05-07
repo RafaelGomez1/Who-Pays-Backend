@@ -10,12 +10,12 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import whopays.groupexpenses.models.Group;
 import whopays.groupexpenses.models.GroupExpense;
-import whopays.groupexpenses.models.User;
+import whopays.groupexpenses.models.GroupUser;
 import whopays.groupexpenses.repositories.GroupRepository;
-import whopays.groupexpenses.repositories.UserRepository;
 import whopays.groupexpenses.services.GroupService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -24,6 +24,7 @@ public class GroupController {
 
     private final GroupService groupService;
     private final GroupRepository groupRepository;
+
     @Autowired
     public GroupController(GroupService groupService, GroupRepository groupRepository) {
         this.groupService = groupService;
@@ -50,38 +51,48 @@ public class GroupController {
                 ).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("groups/create")
-    public Mono<Void> createGroup(@RequestBody Group group) {
+    public Mono<Group> createGroup(@RequestBody Group group) {
         return groupService.createGroup(group);
     }
 
     @PostMapping("groups/{groupId}/user/add")
-    public Mono<Void> addUserToGroup(@RequestBody String userId,
+    public Mono<ResponseEntity<Group>> addUserToGroup(@RequestBody GroupUser groupUser,
                                      @PathVariable("groupId") String groupId) {
-        return groupService.addUserToGroup(userId, groupId);
+        return groupRepository.findById(groupId)
+                .flatMap(group -> {
+                    group.setMembers(addUserToGroup(groupUser, group.getMembers()));
+                    return groupRepository.save(group).thenReturn(group);
+                }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.CREATED))
+                .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
     }
 
-    @PutMapping("groups/{groupId}/user/delete")
-    public  Mono<ResponseEntity<Group>> deleteUserFromGroup(@RequestBody String userId,
-                                                           @PathVariable("groupId") String groupId) {
+    private List<GroupUser> addUserToGroup(GroupUser user, List<GroupUser> members) {
 
+        if (!members.contains(user)) {
+            members.add(user);
+        }
+        System.out.print(members);
+        return members;
+    }
+
+    @PostMapping("groups/{groupId}/user/{userId}/delete")
+    public  Mono<ResponseEntity<Group>> deleteUserFromGroup(@PathVariable("groupId") String groupId,
+                                                            @PathVariable("userId") String userId) {
      Mono<Group> group = groupRepository.findById(groupId);
      return group.flatMap( group1 -> {
          group1.setMembers(deleteUserFromList(group1.getMembers(), userId));
-         return groupRepository.save(group1);
+         return groupRepository.save(group1).thenReturn(group1);
      }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.OK))
              .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
-
     }
 
-    private List<User> deleteUserFromList(List<User> members, String userId) {
-        members.forEach((member) -> {
-            if(member.getId().equals(userId)) {
-                members.remove(members.indexOf(member));
-            }
-        });
-        return members;
+    private List<GroupUser> deleteUserFromList(List<GroupUser> membersId, String userId) {
+       List<GroupUser> modifiedMembers =
+           membersId.stream()
+                .filter(member -> !member.getId().equals(userId))
+                .collect(Collectors.toList());
+        return modifiedMembers;
     }
 
     @PostMapping("groups/{groupId}/expenses/add")
@@ -156,10 +167,5 @@ public class GroupController {
         });
         group.setGroupExpenses(list);
         return group;
-    }
-
-    @GetMapping("groups/{groupId}/members")
-    public Flux<User> getAllMembers(@PathVariable("groupId") String groupId) {
-        return groupService.getAllGroupMembers(groupId);
     }
 }

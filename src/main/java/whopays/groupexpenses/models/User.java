@@ -26,7 +26,7 @@ public class User {
     @Indexed
     private String username;
     private String password;
-    private List<Group> groupsList;
+    private List<String> groupsList;
 
     public String getId() {
         return id;
@@ -52,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Group> getGroupsList() {
+    public List<String> getGroupsList() {
         return groupsList;
     }
 
-    public void setGroupsList(List<Group> groupsList) {
+    public void setGroupsList(List<String> groupsList) {
         this.groupsList = groupsList;
     }
 }
