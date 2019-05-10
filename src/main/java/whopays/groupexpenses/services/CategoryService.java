@@ -6,12 +6,6 @@ import whopays.groupexpenses.models.Category;
 
 
 public interface CategoryService {
-
-/*
-    Flux<CategoryCommand> findAllCategories();
-    Mono<CategoryCommand> findById(String id);
-*/
-
     Flux<Category> findAllCategories();
     Mono<Category> findById(String id);
 }
