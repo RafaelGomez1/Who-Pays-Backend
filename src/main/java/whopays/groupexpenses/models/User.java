@@ -27,6 +27,15 @@ public class User {
     private String username;
     private String password;
     private List<String> groupsList;
+    private String imageURl;
+
+    public String getImageURl() {
+        return imageURl;
+    }
+
+    public void setImageURl(String imageURl) {
+        this.imageURl = imageURl;
+    }
 
     public String getId() {
         return id;
@@ -59,4 +68,6 @@ public class User {
     public void setGroupsList(List<String> groupsList) {
         this.groupsList = groupsList;
     }
+
+
 }

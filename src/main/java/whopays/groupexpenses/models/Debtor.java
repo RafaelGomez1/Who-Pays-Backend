@@ -2,13 +2,14 @@ package whopays.groupexpenses.models;
 
 public class Debtor {
 
-    private User user;
+    private GroupUser user;
+    private float quantity;
 
-    public User getUser() {
+    public GroupUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(GroupUser user) {
         this.user = user;
     }
 
@@ -20,6 +21,6 @@ public class Debtor {
         this.quantity = quantity;
     }
 
-    private float quantity;
+
 
 }

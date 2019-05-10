@@ -1,6 +1,7 @@
 package whopays.groupexpenses.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,10 @@ import java.util.stream.Collectors;
 public class GroupController {
 
     private final GroupService groupService;
-    private final GroupRepository groupRepository;
 
     @Autowired
-    public GroupController(GroupService groupService, GroupRepository groupRepository) {
+    public GroupController(GroupService groupService) {
         this.groupService = groupService;
-        this.groupRepository = groupRepository;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -45,10 +44,7 @@ public class GroupController {
 
     @DeleteMapping("groups/{groupdId}/delete")
     public Mono<ResponseEntity<Void>> deleteGroup(@PathVariable("groupdId") String groupdId) {
-        return groupRepository.findById(groupdId)
-                .flatMap(group -> groupRepository.deleteById(group.getId())
-                    .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
-                ).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return groupService.deleteGroup(groupdId);
     }
 
     @PostMapping("groups/create")
@@ -56,116 +52,45 @@ public class GroupController {
         return groupService.createGroup(group);
     }
 
-    @PostMapping("groups/{groupId}/user/add")
-    public Mono<ResponseEntity<Group>> addUserToGroup(@RequestBody GroupUser groupUser,
-                                     @PathVariable("groupId") String groupId) {
-        return groupRepository.findById(groupId)
-                .flatMap(group -> {
-                    group.setMembers(addUserToGroup(groupUser, group.getMembers()));
-                    return groupRepository.save(group).thenReturn(group);
-                }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.CREATED))
-                .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
+    @PostMapping(value = "groups/{groupId}/user/add", headers ="Accept=application/json")
+    public Mono<ResponseEntity<Group>> addUserToGroup(@PathVariable("groupId") String groupId,
+                                                          @RequestBody GroupUser groupUser) {
+        return groupService.addUserToGroup(groupId, groupUser);
     }
 
-    private List<GroupUser> addUserToGroup(GroupUser user, List<GroupUser> members) {
-
-        if (!members.contains(user)) {
-            members.add(user);
-        }
-        System.out.print(members);
-        return members;
-    }
-
-    @PostMapping("groups/{groupId}/user/{userId}/delete")
+    @PostMapping("groups/{groupId}/user/delete")
     public  Mono<ResponseEntity<Group>> deleteUserFromGroup(@PathVariable("groupId") String groupId,
-                                                            @PathVariable("userId") String userId) {
-     Mono<Group> group = groupRepository.findById(groupId);
-     return group.flatMap( group1 -> {
-         group1.setMembers(deleteUserFromList(group1.getMembers(), userId));
-         return groupRepository.save(group1).thenReturn(group1);
-     }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.OK))
-             .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
-    }
-
-    private List<GroupUser> deleteUserFromList(List<GroupUser> membersId, String userId) {
-       List<GroupUser> modifiedMembers =
-           membersId.stream()
-                .filter(member -> !member.getId().equals(userId))
-                .collect(Collectors.toList());
-        return modifiedMembers;
+                                                            @RequestBody ObjectId userId) {
+        return groupService.deleteUserFromGroup(groupId, userId);
     }
 
     @PostMapping("groups/{groupId}/expenses/add")
     public  Mono<ResponseEntity<Group>> addExpensesToGroup( @RequestBody GroupExpense groupExpenses,
                                                             @PathVariable("groupId") String groupId) {
-        return groupRepository.findById(groupId)
-                .flatMap(group -> {
-                    group.setGroupExpenses(addExpenses(groupExpenses, group.getGroupExpenses()));
-                    return groupRepository.save(group);
-                }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.OK))
-                .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
+       return groupService.addExpensesToGroup(groupExpenses, groupId);
     }
 
-    private List<GroupExpense> addExpenses(GroupExpense groupExpense, List<GroupExpense> list) {
-        list.add(groupExpense);
-        return list;
-    }
-
-    @PatchMapping("groups/{groupId}/expenses/delete")
-    public  Mono<ResponseEntity<Group>> deleteExpensesFromGroup(@RequestBody String groupExpensesId,
+    @PostMapping("groups/{groupId}/expenses/delete")
+    public  Mono<ResponseEntity<Group>> deleteExpensesFromGroup(@RequestBody ObjectId groupExpensesId,
                                                                 @PathVariable("groupId") String groupId) {
-        return groupRepository.findById(groupId)
-                .flatMap(group -> {
-                    group.setGroupExpenses(removeExpenses(groupExpensesId, group.getGroupExpenses()));
-                    return groupRepository.save(group);
-                }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.OK))
-                .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
+       return groupService.deleteExpensesFromGroup(groupExpensesId, groupId);
     }
 
-    private List<GroupExpense> removeExpenses(String groupExpensesId, List<GroupExpense> list) {
-        list.forEach(expenses -> {
-            if (expenses.getId().equals(groupExpensesId)) {
-                list.remove(list.indexOf(expenses));
-            }
-        });
-        return list;
-    }
-
-    @PutMapping("groups/{groupId}/expenses/update")
+    @PostMapping("groups/{groupId}/expenses/update")
     public Mono<ResponseEntity<Group>> updateExpensesFromGroup(@RequestBody GroupExpense groupExpenses,
                                                                @PathVariable("groupId") String groupId) {
-        return groupRepository.findById(groupId)
-                .flatMap(group -> {
-                    return groupRepository.save(checkExpenses(group,groupExpenses));
-                }).map(updatedGroup -> new ResponseEntity<>(updatedGroup, HttpStatus.OK))
-                .defaultIfEmpty((new ResponseEntity<>(HttpStatus.NOT_FOUND)));
+        return groupService.updateExpensesFromGroup(groupExpenses, groupId);
     }
 
-    public Group checkExpenses(Group group, GroupExpense expenses) {
-        List<GroupExpense> list = group.getGroupExpenses();
-        list.forEach(exp -> {
-            if (exp.getId().equals(expenses.getId())) {
-                if (!exp.getConcept().equals(expenses.getConcept())) {
-                    exp.setConcept(expenses.getConcept());
-                }
-                if(exp.getTotalQuantity() != expenses.getTotalQuantity()) {
-                    exp.setTotalQuantity(expenses.getTotalQuantity());
-                }
-                if(!exp.getDebtors().equals(expenses.getDebtors())) {
-                    exp.setDebtors(expenses.getDebtors());
-                }
-                if(!exp.getPayers().equals(expenses.getPayers())) {
-                    exp.setPayers(expenses.getPayers());
-                }
-                if(!exp.getDate().equals(expenses.getDate())) {
-                    exp.setDate(expenses.getDate());
-                }
-                if(!exp.getCategory().equals(expenses.getCategory())) {
-                    exp.setCategory(expenses.getCategory());
-                }
-            }
-        });
-        group.setGroupExpenses(list);
-        return group;
+    @PostMapping("groups/{groupId}/admin/add")
+    Mono<ResponseEntity<Group>> addAdminToGroup( @RequestBody GroupUser admin,
+                                                 @PathVariable("groupId") String groupId) {
+        return groupService.addAdminToGroup(admin, groupId);
+    }
+
+    @PostMapping("groups/{groupId}/admin/delete")
+    Mono<ResponseEntity<Group>> removeAdminFromGroup( @RequestBody ObjectId admin,
+                                                      @PathVariable("groupId") String groupId) {
+        return groupService.removeAdminFromGroup(admin, groupId);
     }
 }

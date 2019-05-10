@@ -2,13 +2,14 @@ package whopays.groupexpenses.models;
 
 public class Payer {
 
-    private User payer;
+    private GroupUser payer;
+    private float quantity;
 
-    public User getPayer() {
+    public GroupUser getPayer() {
         return payer;
     }
 
-    public void setPayer(User payer) {
+    public void setPayer(GroupUser payer) {
         this.payer = payer;
     }
 
@@ -20,5 +21,5 @@ public class Payer {
         this.quantity = quantity;
     }
 
-    private float quantity;
+
 }

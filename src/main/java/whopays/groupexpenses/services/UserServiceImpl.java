@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<Void> createUser(User user) {
-        return userRepository.save(user).then();
+        return userRepository.insert(user).then();
     }
 
     @Override
