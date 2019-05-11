@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+import org.springframework.web.reactive.config.EnableWebFlux;
 import reactor.core.publisher.Flux;
 import whopays.groupexpenses.models.User;
 
@@ -19,18 +20,4 @@ public class GroupexpensesApplication {
     public static void main(String[] args) {
         SpringApplication.run(GroupexpensesApplication.class, args);
     }
-
-   /* @Bean
-    public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
-                                       MongoMappingContext context) {
-        MappingMongoConverter converter =
-                new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory), context);
-        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, converter);
-
-        return mongoTemplate;
-    }*/
-
-
 }
