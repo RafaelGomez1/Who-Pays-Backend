@@ -1,13 +1,10 @@
 package whopays.groupexpenses.services;
 
-import org.reactivestreams.Publisher;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.commands.UserCommand;
-import whopays.groupexpenses.converters.UserCommandToUser;
-import whopays.groupexpenses.converters.UserToUserCommand;
 import whopays.groupexpenses.models.User;
 import whopays.groupexpenses.repositories.UserRepository;
 
@@ -21,8 +18,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<Void> createUser(User user) {
-        return userRepository.insert(user).then();
+    public Mono<User> createUser(User user) {
+        return userRepository.insert(user);
     }
 
     @Override
@@ -38,5 +35,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(String id) {
         userRepository.deleteById(id).block();
+    }
+
+    @Override
+    public Mono<User> updateUser(User user) {
+        return userRepository.findById(user.getId())
+                .flatMap( existingUser -> {
+                    return userRepository.save(updateUser(user, existingUser)).thenReturn(user);
+                });
+    }
+
+    @Override
+    public Mono<Void> deleteUser(String userId) {
+        return userRepository.findById(userId)
+                .flatMap(user ->
+                        userRepository.deleteById(user.getId()));
+    }
+
+    private User updateUser(User originalUser, User modifiedUser) {
+        if (originalUser.getId().equals(modifiedUser.getId())) {
+            if (!originalUser.getUsername().equals(modifiedUser.getUsername())) {
+                originalUser.setUsername(modifiedUser.getUsername());
+            }
+
+            if (!originalUser.getPassword().equals(modifiedUser.getPassword())) {
+                originalUser.setPassword(modifiedUser.getPassword());
+            }
+        }
+        return originalUser;
     }
 }
