@@ -1,7 +1,8 @@
 package whopays.groupexpenses.services;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,13 +13,17 @@ import whopays.groupexpenses.repositories.UserRepository;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public Mono<User> createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.insert(user);
     }
 
@@ -41,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public Mono<User> updateUser(User user) {
         return userRepository.findById(user.getId())
                 .flatMap( existingUser -> {
-                    return userRepository.save(updateUser(user, existingUser)).thenReturn(user);
+                    return userRepository.save(updateUser(existingUser, user));
                 });
     }
 
@@ -59,7 +64,7 @@ public class UserServiceImpl implements UserService {
             }
 
             if (!originalUser.getPassword().equals(modifiedUser.getPassword())) {
-                originalUser.setPassword(modifiedUser.getPassword());
+                originalUser.setPassword(passwordEncoder.encode(modifiedUser.getPassword()));
             }
         }
         return originalUser;
