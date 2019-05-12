@@ -15,6 +15,7 @@ import reactor.core.publisher.Flux;
 import whopays.groupexpenses.models.User;
 
 @SpringBootApplication
+@EnableWebFlux
 public class GroupexpensesApplication {
 
     public static void main(String[] args) {

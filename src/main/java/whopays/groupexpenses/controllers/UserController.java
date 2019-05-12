@@ -22,14 +22,13 @@ import whopays.groupexpenses.services.UserService;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
+    /*
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("user/create")
     public Mono<Void> saveOrUpdate(@RequestBody User command) {
@@ -56,18 +55,6 @@ public class UserController {
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    private User updateUser(User originalUser, User modifiedUser) {
-        if (originalUser.getId().equals(modifiedUser.getId())) {
-            if (originalUser.getUsername() != modifiedUser.getUsername()) {
-                originalUser.setUsername(modifiedUser.getUsername());
-            }
-
-            if (originalUser.getPassword() != modifiedUser.getPassword()) {
-                originalUser.setPassword(modifiedUser.getPassword());
-            }
-        }
-        return originalUser;
-    }
 
     @DeleteMapping("user/delete/{userId}")
     public Mono<ResponseEntity<Void>> deleteUser(@PathVariable("userId") String userId) {
@@ -76,5 +63,5 @@ public class UserController {
                     userRepository.deleteById(user.getId())
                             .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
                     ).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+    }*/
 }

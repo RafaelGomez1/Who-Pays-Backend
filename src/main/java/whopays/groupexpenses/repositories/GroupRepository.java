@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import whopays.groupexpenses.models.Group;
 
 @Repository
-public interface GroupRepository extends ReactiveMongoRepository<Group, String>, GroupCustomRepository {
+public interface GroupRepository extends ReactiveMongoRepository<Group, String> {
 
 }
