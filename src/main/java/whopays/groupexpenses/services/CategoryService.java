@@ -2,7 +2,7 @@ package whopays.groupexpenses.services;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.models.Category;
+import whopays.groupexpenses.models.GroupExpenses.Category;
 
 
 public interface CategoryService {

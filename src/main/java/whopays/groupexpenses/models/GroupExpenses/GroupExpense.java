@@ -1,10 +1,12 @@
-package whopays.groupexpenses.models;
+package whopays.groupexpenses.models.GroupExpenses;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -17,18 +19,20 @@ public class GroupExpense {
     @Id
     private ObjectId id;
     private String concept;
-    private long totalQuantity;
+    private double totalQuantity;
+    private double totalPaid;
     private List<Debtor> debtors;
     private List<Payer> payers;
     private Date date;
     private Category category;
     private ExpenseStatus status;
+    private List<Payment> payments;
 
     public GroupExpense() {
         this.id = ObjectId.get();
+        this.payments = new ArrayList<>();
         this.status = ExpenseStatus.NOT_PAID;
     }
-
 
     public ObjectId getId() {
         return id;
@@ -46,11 +50,11 @@ public class GroupExpense {
         this.concept = concept;
     }
 
-    public long getTotalQuantity() {
+    public double getTotalQuantity() {
         return totalQuantity;
     }
 
-    public void setTotalQuantity(long totalQuantity) {
+    public void setTotalQuantity(double totalQuantity) {
         this.totalQuantity = totalQuantity;
     }
 
@@ -92,6 +96,22 @@ public class GroupExpense {
 
     public void setStatus(ExpenseStatus status) {
         this.status = status;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public double getTotalPaid() {
+        return totalPaid;
+    }
+
+    public void setTotalPaid(double totalPaid) {
+        this.totalPaid = totalPaid;
     }
 
     @Override

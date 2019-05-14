@@ -1,4 +1,4 @@
-package whopays.groupexpenses.models;
+package whopays.groupexpenses.models.GroupExpenses;
 
 public enum ExpenseStatus {
     PAID,

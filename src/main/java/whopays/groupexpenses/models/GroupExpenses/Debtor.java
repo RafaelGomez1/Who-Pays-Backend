@@ -1,9 +1,10 @@
-package whopays.groupexpenses.models;
+package whopays.groupexpenses.models.GroupExpenses;
 
 public class Debtor {
 
     private GroupUser user;
     private float quantity;
+    private GroupUser userPaid;
 
     public GroupUser getUser() {
         return user;
@@ -21,6 +22,11 @@ public class Debtor {
         this.quantity = quantity;
     }
 
+    public GroupUser getUserPaid() {
+        return userPaid;
+    }
 
-
+    public void setUserPaid(GroupUser userPaid) {
+        this.userPaid = userPaid;
+    }
 }

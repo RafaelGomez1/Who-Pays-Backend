@@ -9,14 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.models.Group;
-import whopays.groupexpenses.models.GroupExpense;
-import whopays.groupexpenses.models.GroupUser;
-import whopays.groupexpenses.repositories.GroupRepository;
+import whopays.groupexpenses.models.GroupExpenses.Group;
+import whopays.groupexpenses.models.GroupExpenses.GroupExpense;
+import whopays.groupexpenses.models.GroupExpenses.GroupUser;
 import whopays.groupexpenses.services.GroupService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController

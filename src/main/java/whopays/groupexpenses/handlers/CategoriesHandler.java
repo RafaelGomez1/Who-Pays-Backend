@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.models.Category;
+import whopays.groupexpenses.models.GroupExpenses.Category;
 import whopays.groupexpenses.services.CategoryService;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;

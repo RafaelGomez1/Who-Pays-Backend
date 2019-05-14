@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import whopays.groupexpenses.models.User;
+import whopays.groupexpenses.models.GroupExpenses.User;
 import whopays.groupexpenses.repositories.UserRepository;
 
 @Service
