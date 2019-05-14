@@ -2,8 +2,8 @@ package whopays.groupexpenses.models;
 
 public class LogInObject {
 
-    String username;
-    String password;
+   private String username;
+   private String password;
 
     public String getUsername() {
         return username;

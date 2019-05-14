@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -27,6 +28,10 @@ public class User {
     private String password;
     private List<String> groupsList;
     private String imageURl;
+
+    public User() {
+        this.groupsList = new ArrayList<>();
+    }
 
     public String getImageURl() {
         return imageURl;

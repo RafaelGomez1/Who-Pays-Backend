@@ -32,7 +32,6 @@ public class SecurityConfig {
                 .password(passwordEncoder().encode("password"))
                 .roles("USER")
                 .build();
-
         UserDetails adminDetails = User.withUsername("admin")
                 .password(passwordEncoder().encode("password"))
                 .roles("ADMIN")

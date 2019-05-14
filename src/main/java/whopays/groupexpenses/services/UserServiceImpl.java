@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public Mono<User> updateUser(User user) {
         return userRepository.findById(user.getId())
                 .flatMap( existingUser -> {
-                    return userRepository.save(updateUser(existingUser, user));
+                    return userRepository.save(updateUser(existingUser, user)).thenReturn(existingUser);
                 });
     }
 
@@ -65,6 +65,10 @@ public class UserServiceImpl implements UserService {
 
             if (!originalUser.getPassword().equals(modifiedUser.getPassword())) {
                 originalUser.setPassword(passwordEncoder.encode(modifiedUser.getPassword()));
+            }
+
+            if(!originalUser.getGroupsList().equals(modifiedUser.getGroupsList())) {
+                originalUser.setGroupsList(modifiedUser.getGroupsList());
             }
         }
         return originalUser;

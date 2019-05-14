@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 import whopays.groupexpenses.models.Group;
 import whopays.groupexpenses.models.GroupExpense;
 import whopays.groupexpenses.models.GroupUser;
+import whopays.groupexpenses.models.User;
 import whopays.groupexpenses.repositories.GroupRepository;
 
 import java.util.List;
@@ -19,15 +20,17 @@ import java.util.stream.Collectors;
 public class GroupServiceImpl implements GroupService {
 
     private final GroupRepository groupRepository;
+    private final UserService userService;
 
     @Autowired
-    public GroupServiceImpl(GroupRepository groupRepository) {
+    public GroupServiceImpl(GroupRepository groupRepository, UserService userService) {
         this.groupRepository = groupRepository;
+        this.userService = userService;
     }
 
     @Override
     public Mono<Group> createGroup(Group group) {
-        return groupRepository.insert(group).thenReturn(group);
+         return groupRepository.insert(group);
     }
 
     @Override
