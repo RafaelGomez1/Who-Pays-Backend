@@ -9,6 +9,13 @@ public class Assets {
     private String concept;
     private Date debtDate;
 
+    public Assets(String username, double quantity, String concept, Date date) {
+        this.username = username;
+        this.quantity = quantity;
+        this.concept = concept;
+        this.debtDate = date;
+    }
+
     public String getUsername() {
         return username;
     }

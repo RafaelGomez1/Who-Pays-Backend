@@ -18,4 +18,6 @@ public class GroupBalance {
     public void setUsersBalance(List<UserBalance> usersBalance) {
         this.usersBalance = usersBalance;
     }
+
+    public void addUserBalance(UserBalance userBalance) {this.usersBalance.add(userBalance);}
 }

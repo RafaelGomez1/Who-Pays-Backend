@@ -1,6 +1,7 @@
 package whopays.groupexpenses.handlers;
 
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -21,11 +22,12 @@ public class GroupBalanceHandler {
         this.groupBalanceService = groupBalanceService;
     }
 
-    public Mono<ServerResponse> getGroupBalance(ServerRequest serverRequest) {
-        String groupId = serverRequest.pathVariable("groupId");
-        return ServerResponse.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                .body(groupBalanceService.getGroupBalance(groupId), GroupBalance.class);
+    public Mono<ServerResponse> getGroupBalanceFiltered(ServerRequest serverRequest) {
+        Mono<ObjectId> groupId = serverRequest.bodyToMono(ObjectId.class);
+        return groupId.flatMap( group ->
+                ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(groupBalanceService.getGroupBalanceWithFilter(group), GroupBalance.class));
 
     }
 }

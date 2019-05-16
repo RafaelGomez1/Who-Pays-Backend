@@ -13,6 +13,9 @@ public class UserBalance {
 
     public UserBalance() {
         this.debts = new ArrayList<>();
+        this.assets = new ArrayList<>();
+        this.totalActive = 0.0;
+        this.totalDebt = 0.0;
     }
 
     public String getUsername() {
@@ -54,4 +57,19 @@ public class UserBalance {
     public void setDebts(List<Debts> debts) {
         this.debts = debts;
     }
+
+    public void addAsset(Assets assets) {
+        this.assets.add(assets);
+    }
+
+    public void addDebt(Debts debts) { this.debts.add(debts); }
+
+    public void addTotalDebts(double totalDebt) { this.totalDebt+= totalDebt;}
+
+    public void addTotalAssets(double totalAssets) {this.totalActive+= totalAssets;}
+
+    public void subTotalDebts(double totalDebt) { this.totalDebt-= totalDebt;}
+
+    public void subTotalAssets(double totalAssets) {this.totalActive-= totalAssets;}
+
 }
