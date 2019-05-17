@@ -3,9 +3,7 @@ package whopays.groupexpenses.models.GroupExpenses;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Payment {
 
@@ -14,10 +12,10 @@ public class Payment {
     private ObjectId groupExpensesId;
     private String concept;
     private Date paymentDate;
-    private List<Payer> payers;
+    private Payer payer;
 
     public Payment() {
-        this.payers = new ArrayList<>();
+        this.id = ObjectId.get();
         this.paymentDate = new Date();
     }
 
@@ -45,19 +43,19 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public List<Payer> getPayers() {
-        return payers;
-    }
-
-    public void setPayers(List<Payer> payers) {
-        this.payers = payers;
-    }
-
     public ObjectId getGroupExpensesId() {
         return groupExpensesId;
     }
 
     public void setGroupExpensesId(ObjectId groupExpensesId) {
         this.groupExpensesId = groupExpensesId;
+    }
+
+    public Payer getPayer() {
+        return payer;
+    }
+
+    public void setPayer(Payer payer) {
+        this.payer = payer;
     }
 }

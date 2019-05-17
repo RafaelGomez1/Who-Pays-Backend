@@ -1,0 +1,738 @@
+{
+	"info": {
+		"_postman_id": "0de1f33e-fb53-4489-ac37-c13ba140ddc6",
+		"name": "Who-Pays",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get all ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{server}}/categories",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{server}}/categories/5ccef4511c9d440000cce9d8",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"categories",
+								"5ccef4511c9d440000cce9d8"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"username\" : \"usuarioPRueba\",\n\t\"password\" : \"aasasaaaa\",\n\t\"groupsList\" : []\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/user/create",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\t\"id\": \"5cd851058cc6a323ecfbf339\",\n        \"username\": \"pruebaCrypt255\",\n        \"password\": \"$2a$10$yB.1CNHLreZ3jfqZTl96V.nbfDkMV7bVMhTibRimW9gkH3q4pxKsW\",\n        \"groupsList\": null,\n        \"imageURl\": null\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/user/update",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete User by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"id\" : null,\n\t\"username\" : \"Rafa20\",\n\t\"password\" : \"aasasa\",\n\t\"groupsId\" : []\n\t\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/user/delete/5cd851058cc6a323ecfbf339",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								"5cd851058cc6a323ecfbf339"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/user",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get User by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"id\" : null,\n\t\"username\" : \"Rafa20\",\n\t\"password\" : \"aasasa\",\n\t\"groupsId\" : []\n\t\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/user/5ccef4231c9d440000cce9d5",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"5ccef4231c9d440000cce9d5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Create group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"groupName\" : \"Prueba Replication 5\",\n\t\"creationDate\" : \"2019-05-07\",\n\t\"admin\" : [{\"id\" : \"5cd8630f8cc6a331041c054f\", \"username\": \"usuarioPRueba\"}],\n\t\"groupExpenses\": [],\n\t\"members\" :[{\"id\" : \"5cd8630f8cc6a331041c054f\", \"username\": \"usuarioPRueba\"}]\n\t\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/create",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add User to Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"5ccef43e1c9d440000cce9d6\",\n\t\"username\" : \"rafael11111\"\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5cd1f2cf35e2450eac06acd2/user/add",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5cd1f2cf35e2450eac06acd2",
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Admin to Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"5ccef43e1c9d440000cce9d6\",\n\t\"username\" : \"rafael11111\",\n\t\"imageUrl\": null\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5cd202ccdff56f3a40ddff61/admin/add",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5cd202ccdff56f3a40ddff61",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/groups/5cd1e71435e245364c7a5c8b/delete",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5cd1e71435e245364c7a5c8b",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user from group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timestamp\": 1557263392,\n    \"machineIdentifier\": 1336546,\n    \"processIdentifier\": 13360,\n    \"counter\": 4764137,\n    \"time\": 1557263392000,\n    \"date\": \"2019-05-07T21:09:52.000+0000\",\n    \"timeSecond\": 1557263392\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5ccf22f31dbcf62990a9afdd/user/delete",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5ccf22f31dbcf62990a9afdd",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Adminfrom group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n\t\"timestamp\": 1557066814,\n    \"machineIdentifier\": 1875268,\n    \"processIdentifier\": 0,\n    \"counter\": 13429206,\n    \"time\": 1557066814000,\n    \"date\": \"2019-05-05T14:33:34.000+0000\",\n    \"timeSecond\": 1557066814\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5cd202ccdff56f3a40ddff61/admin/delete",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5cd202ccdff56f3a40ddff61",
+								"admin",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addExpensesToGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"id\": {\n                \"timestamp\": 1557510458,\n                \"machineIdentifier\": 15548323,\n                \"processIdentifier\": 18096,\n                \"counter\": 13176437,\n                \"time\": 1557510458000,\n                \"date\": \"2019-05-10T17:47:38.000+0000\",\n                \"timeSecond\": 1557510458\n            },\n            \"concept\": \"Restaurante Ramen prueba 3\",\n            \"totalQuantity\": 350,\n            \"debtors\": [\n                {\n                    \"user\": {\n                        \"id\": {\n                            \"timestamp\": 1557263392,\n                            \"machineIdentifier\": 1336546,\n                            \"processIdentifier\": 13360,\n                            \"counter\": 4764137,\n                            \"time\": 1557263392000,\n                            \"date\": \"2019-05-07T21:09:52.000+0000\",\n                            \"timeSecond\": 1557263392\n                        },\n                        \"username\": \"pepito\",\n                        \"imageURl\": null\n                    },\n                    \"quantity\": 150\n                }\n            ],\n            \"payers\": [\n                {\n                    \"payer\": {\n                        \"id\": {\n                            \"timestamp\": 1557267133,\n                            \"machineIdentifier\": 13389671,\n                            \"processIdentifier\": 14912,\n                            \"counter\": 3744195,\n                            \"time\": 1557267133000,\n                            \"date\": \"2019-05-07T22:12:13.000+0000\",\n                            \"timeSecond\": 1557267133\n                        },\n                        \"username\": \"ajajajajaja\",\n                        \"imageURl\": null\n                    },\n                    \"quantity\": 300\n                }\n            ],\n            \"date\": \"2019-05-10T00:00:00.000+0000\",\n            \"category\": {\n                \"id\": \"5ccef4511c9d440000cce9d8\",\n                \"name\": \"RESTAURANTES\"\n            },\n            \"status\": \"NOT_PAID\"\n        }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5ccf22f31dbcf62990a9afdd/expenses/add",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5ccf22f31dbcf62990a9afdd",
+								"expenses",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Expenses From Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"id\": {\n                \"timestamp\": 1557510458,\n                \"machineIdentifier\": 15548323,\n                \"processIdentifier\": 18096,\n                \"counter\": 13176437,\n                \"time\": 1557510458000,\n                \"date\": \"2019-05-10T17:47:38.000+0000\",\n                \"timeSecond\": 1557510458\n            },\n            \"concept\": \"Restaurante Ramen prueba 3\",\n            \"totalQuantity\": 350,\n            \"debtors\": [\n                {\n                    \"user\": {\n                        \"id\": {\n                            \"timestamp\": 1557263392,\n                            \"machineIdentifier\": 1336546,\n                            \"processIdentifier\": 13360,\n                            \"counter\": 4764137,\n                            \"time\": 1557263392000,\n                            \"date\": \"2019-05-07T21:09:52.000+0000\",\n                            \"timeSecond\": 1557263392\n                        },\n                        \"username\": \"pepito\",\n                        \"imageURl\": null\n                    },\n                    \"quantity\": 150\n                }\n            ],\n            \"payers\": [\n                {\n                    \"payer\": {\n                        \"id\": {\n                            \"timestamp\": 1557267133,\n                            \"machineIdentifier\": 13389671,\n                            \"processIdentifier\": 14912,\n                            \"counter\": 3744195,\n                            \"time\": 1557267133000,\n                            \"date\": \"2019-05-07T22:12:13.000+0000\",\n                            \"timeSecond\": 1557267133\n                        },\n                        \"username\": \"ajajajajaja\",\n                        \"imageURl\": null\n                    },\n                    \"quantity\": 300\n                }\n            ],\n            \"date\": \"2019-05-10T00:00:00.000+0000\",\n            \"category\": {\n                \"id\": \"5ccef4511c9d440000cce9d8\",\n                \"name\": \"RESTAURANTES\"\n            },\n            \"status\": \"NOT_PAID\"\n}\n"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5ccf22f31dbcf62990a9afdd/expenses/update",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5ccf22f31dbcf62990a9afdd",
+								"expenses",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Expenses From Group Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timestamp\": 1557510458,\n    \"machineIdentifier\": 15548323,\n    \"processIdentifier\": 18096,\n    \"counter\": 13176437,\n    \"time\": 1557510458000,\n    \"date\": \"2019-05-10T17:47:38.000+0000\",\n    \"timeSecond\": 1557510458\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/5ccf22f31dbcf62990a9afdd/expenses/delete",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5ccf22f31dbcf62990a9afdd",
+								"expenses",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find group by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/groups/5cd202ccdff56f3a40ddff61",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"5cd202ccdff56f3a40ddff61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/groups",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "logIn",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"pruebaCrypt25\",\n\t\"password\" : \"aasasaaaa\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Balance",
+			"item": [
+				{
+					"name": "Compute Balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timestamp\": 1557267148,\n    \"machineIdentifier\": 14677359,\n    \"processIdentifier\": 14912,\n    \"counter\": 14548833,\n    \"time\": 1557267148000,\n    \"date\": 1557267148000,\n    \"timeSecond\": 1557267148\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/balance",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compute Balance Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timestamp\": 1557267148,\n    \"machineIdentifier\": 14677359,\n    \"processIdentifier\": 14912,\n    \"counter\": 14548833,\n    \"time\": 1557267148000,\n    \"date\": 1557267148000,\n    \"timeSecond\": 1557267148\n}"
+						},
+						"url": {
+							"raw": "{{server}}/groups/filtered/balance",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"groups",
+								"filtered",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

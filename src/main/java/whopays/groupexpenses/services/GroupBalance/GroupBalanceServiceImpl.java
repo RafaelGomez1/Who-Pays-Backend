@@ -39,15 +39,15 @@ public class GroupBalanceServiceImpl implements GroupBalanceService{
                                 || payer.getDebtor().getUsername().equals(member.getUsername())).collect(Collectors.toList())) {
                         if (payer.getPayer().getId().equals(member.getId())) {
                             Assets assets = new Assets(payer.getDebtor().getUsername(),
-                                    payer.getQuantity()/2, groupExpense.getConcept(), groupExpense.getDate());
+                                    payer.getQuantity(), groupExpense.getConcept(), groupExpense.getDate());
                             userBalance.addAsset(assets);
-                            userBalance.addTotalAssets(payer.getQuantity()/2);
+                            userBalance.addTotalAssets(payer.getQuantity());
                         }
                         if (payer.getDebtor().getId().equals(member.getId())) {
                             Debts debts = new Debts(payer.getPayer().getUsername(),
-                                    payer.getQuantity()/2, groupExpense.getConcept(), groupExpense.getDate());
+                                    payer.getQuantity(), groupExpense.getConcept(), groupExpense.getDate());
                             userBalance.addDebt(debts);
-                            userBalance.addTotalDebts(payer.getQuantity()/2);
+                            userBalance.addTotalDebts(payer.getQuantity());
                         }
                     }
                 }

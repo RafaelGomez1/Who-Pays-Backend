@@ -20,7 +20,8 @@ public class GroupExpense {
     private ObjectId id;
     private String concept;
     private double totalQuantity;
-    private double totalPaid;
+    private double totalDebt;
+    private double totalDebtPaid;
     private List<Debtor> debtors;
     private List<Payer> payers;
     private Date date;
@@ -86,6 +87,8 @@ public class GroupExpense {
         return category;
     }
 
+    public void addPayer(Payer payer) {this.payers.add(payer);}
+
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -106,12 +109,31 @@ public class GroupExpense {
         this.payments = payments;
     }
 
-    public double getTotalPaid() {
-        return totalPaid;
+    public void addPayments(Payment payment) {this.payments.add(payment);}
+
+    public double getTotalDebtPaid() {
+        return totalDebtPaid;
     }
 
-    public void setTotalPaid(double totalPaid) {
-        this.totalPaid = totalPaid;
+    public void setTotalDebtPaid(double totalDebtPaid) {
+        this.totalDebtPaid = totalDebtPaid;
+    }
+
+    public double getTotalDebt() {
+        return totalDebt;
+    }
+
+    public void setTotalDebt(double totalDebt) {
+        this.totalDebt = totalDebt;
+    }
+
+    public void addTotalDebPaid (double totalDebtPaid) {
+        this.totalDebtPaid+= totalDebtPaid;
+        if (totalDebt == this.totalDebtPaid) {
+            this.status = ExpenseStatus.PAID;
+        } else if (this.totalDebtPaid >0 && this.status != ExpenseStatus.PARTIALLY_PAID) {
+            this.status = ExpenseStatus.PARTIALLY_PAID;
+        }
     }
 
     @Override
