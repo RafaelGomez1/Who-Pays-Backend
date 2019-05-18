@@ -1,0 +1,6 @@
+version: '2.0'
+services:
+  groupexpenses-compose:
+      build: .
+      ports:
+        - 4000:8081
