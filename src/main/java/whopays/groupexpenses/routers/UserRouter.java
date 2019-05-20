@@ -28,6 +28,10 @@ public class UserRouter {
                 .andRoute(POST("/user/update").and(accept(MediaType.APPLICATION_JSON)),
                         userHandler::updateUser)
                 .andRoute(DELETE("/user/delete/{userId}").and(accept(MediaType.APPLICATION_JSON)),
-                        userHandler::deleteUser);
+                        userHandler::deleteUser)
+                .andRoute(POST("/user/{userId}/image/add").and(accept(MediaType.MULTIPART_FORM_DATA)),
+                        userHandler::uploadProfileImage)
+                .andRoute(GET("/user/{userId}/image/{imageId}").and(accept(MediaType.APPLICATION_JSON)),
+                        userHandler::getProfileImage);
     }
 }

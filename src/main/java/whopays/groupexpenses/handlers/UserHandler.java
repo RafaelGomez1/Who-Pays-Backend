@@ -1,13 +1,22 @@
 package whopays.groupexpenses.handlers;
 
+import com.mongodb.connection.Server;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.parser.Part;
 import org.springframework.http.MediaType;
+import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import whopays.groupexpenses.models.GroupExpenses.User;
 import whopays.groupexpenses.services.UserService;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 
@@ -59,7 +68,40 @@ public class UserHandler {
                 .body(userService.deleteUser(userId), Void.class);
     }
 
+    public Mono<ServerResponse> uploadProfileImage(ServerRequest serverRequest) {
+        String userId = serverRequest.pathVariable("userId");
+        return serverRequest.body(BodyExtractors.toMultipartData())
+                .flatMap(multipart -> {
+                    multipart.toSingleValueMap().keySet()
+                            .stream().forEach(c -> {
+                        FilePart fp = (FilePart) multipart.toSingleValueMap().get(c);
+                        fp.transferTo(new File(("/usersImages/".concat(userId))));
+                    });
+                    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                            .body(Mono.just("/usersImages/".concat(userId)), String.class);
+                });
+        /*
+        Mono<String> then = serverRequest.multipartData().map(it -> it.get("files"))
+                .flatMapMany(Flux::fromIterable)
+                .cast(FilePart.class)
+                .flatMap(it -> it.transferTo(Paths.get("/tmp/" + it.filename() + userId)))
+                .then(Mono.just("OK"));
+        return ServerResponse.ok().body(then, String.class);
 
+        final Flux<Void> voidFlux = serverRequest.body(BodyExtractors.toParts())
+                .cast(FilePart.class)
+                .flatMap(filePart -> {
+                    final Path path = Paths.get("/tmp/");
+                    return filePart.transferTo(path);
+                });
 
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(voidFlux, Void.class);*/
+    }
 
+    public Mono<ServerResponse> getProfileImage(ServerRequest serverRequest) {
+        return ServerResponse.ok().body(Mono.just("ssss"), String.class);
+    }
 }
