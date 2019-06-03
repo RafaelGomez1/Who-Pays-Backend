@@ -53,7 +53,7 @@ public class UserHandler {
         Mono<User> userToUpdate = serverRequest.bodyToMono(User.class);
         return userToUpdate.flatMap(user -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(userService.updateUser(user), User.class));
+                                    .body(userService.updateUser(user), User.class));
     }
 
     public Mono<ServerResponse> deleteUser(ServerRequest serverRequest) {
