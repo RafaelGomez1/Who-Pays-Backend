@@ -26,6 +26,12 @@ public class GroupController {
         this.groupService = groupService;
     }
 
+    @PostMapping(value = "groups/{groupId}/user/add", headers ="Accept=application/json")
+    public Mono<ResponseEntity<Group>> addUserToGroup(@PathVariable("groupId") String groupId,
+                                                      @RequestBody GroupUser groupUser) {
+        return groupService.addUserToGroup(groupId, groupUser);
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("groups/{groupId}")
     public Mono<Group> getGroup(@PathVariable("groupId") String groupId) {
@@ -48,11 +54,6 @@ public class GroupController {
         return groupService.createGroup(group);
     }
 
-    @PostMapping(value = "groups/{groupId}/user/add", headers ="Accept=application/json")
-    public Mono<ResponseEntity<Group>> addUserToGroup(@PathVariable("groupId") String groupId,
-                                                          @RequestBody GroupUser groupUser) {
-        return groupService.addUserToGroup(groupId, groupUser);
-    }
 
     @PostMapping("groups/{groupId}/user/delete")
     public  Mono<ResponseEntity<Group>> deleteUserFromGroup(@PathVariable("groupId") String groupId,

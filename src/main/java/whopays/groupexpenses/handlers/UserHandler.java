@@ -1,22 +1,17 @@
 package whopays.groupexpenses.handlers;
 
-import com.mongodb.connection.Server;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.parser.Part;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import whopays.groupexpenses.models.GroupExpenses.User;
 import whopays.groupexpenses.services.UserService;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 

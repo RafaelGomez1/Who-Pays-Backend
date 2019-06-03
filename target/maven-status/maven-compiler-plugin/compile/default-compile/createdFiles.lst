@@ -10,6 +10,7 @@ whopays\groupexpenses\models\BalanceModels\GroupBalance.class
 whopays\groupexpenses\models\GroupExpenses\User.class
 whopays\groupexpenses\models\GroupExpenses\Payer.class
 whopays\groupexpenses\models\GroupExpenses\GroupUser.class
+whopays\groupexpenses\controllers\ImageController$1.class
 whopays\groupexpenses\models\BalanceModels\Debts.class
 whopays\groupexpenses\models\GroupExpenses\ExpenseStatus.class
 whopays\groupexpenses\services\CategoryServiceImpl.class
@@ -18,9 +19,11 @@ whopays\groupexpenses\routers\LogInRouter.class
 whopays\groupexpenses\services\GroupService.class
 whopays\groupexpenses\models\GroupExpenses\Group.class
 whopays\groupexpenses\services\LogInServiceImpl.class
+whopays\groupexpenses\controllers\ImageController.class
 whopays\groupexpenses\repositories\GroupRepository.class
 whopays\groupexpenses\security\SecurityConfig.class
 whopays\groupexpenses\services\Payment\PaymentService.class
+whopays\groupexpenses\models\UploadImage\CloseCondition.class
 whopays\groupexpenses\services\GroupServiceImpl.class
 whopays\groupexpenses\routers\GroupBalanceRouter.class
 whopays\groupexpenses\services\UserService.class

@@ -5,6 +5,7 @@ C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\grou
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\GroupExpenses\Payer.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\handlers\CategoriesHandler.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\controllers\PaymentController.java
+C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\UploadImage\CloseCondition.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\BalanceModels\GroupBalance.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\GroupExpenses\Category.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\handlers\GroupBalanceHandler.java
@@ -15,6 +16,7 @@ C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\grou
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\GroupExpenses\Group.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\services\GroupBalance\GroupBalanceServiceImpl.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\services\LogInServiceImpl.java
+C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\controllers\ImageController.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\GroupExpenses\GroupExpense.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\controllers\GroupController.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\BalanceModels\Debts.java

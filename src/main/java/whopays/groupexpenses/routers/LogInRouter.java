@@ -7,8 +7,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import whopays.groupexpenses.handlers.LogInHandler;
-
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration
@@ -17,7 +16,7 @@ public class LogInRouter {
     @Bean
     public RouterFunction<ServerResponse> logInRoute(LogInHandler logInHandler) {
         return RouterFunctions
-                .route(GET("/login").and(accept(MediaType.APPLICATION_JSON)),
+                .route(PUT("/login").and(accept(MediaType.APPLICATION_JSON)),
                         logInHandler::logIn);
     }
 }
