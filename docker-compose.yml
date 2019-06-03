@@ -3,4 +3,4 @@ services:
   groupexpenses-compose:
       image: groupexpenses-compose
       ports:
-        - 4000:8081
+        - 8100:8081
