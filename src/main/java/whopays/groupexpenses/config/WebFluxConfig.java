@@ -6,11 +6,23 @@ import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.config.WebFluxConfigurerComposite;
 
-//@Configuration
-public class WebFluxConfig {
+@Configuration
+public class WebFluxConfig implements WebFluxConfigurer {
+
+    private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN, Accept";
+
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry) {
+        corsRegistry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedHeaders(ALLOWED_HEADERS)
+                .allowedMethods("PUT, GET, POST, DELETE, OPTIONS")
+                .maxAge(3600);
+    }
+
 
 //    @Bean
-    public WebFluxConfigurer corsConfigurer() {
+ /*   public WebFluxConfigurer corsConfigurer() {
         return new WebFluxConfigurerComposite() {
 
             @Override
@@ -19,5 +31,5 @@ public class WebFluxConfig {
                         .allowedMethods("*");
             }
         };
-    }
+    }*/
 }
