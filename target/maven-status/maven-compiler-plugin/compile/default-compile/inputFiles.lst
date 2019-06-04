@@ -37,6 +37,7 @@ C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\grou
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\handlers\UserHandler.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\BalanceModels\UserBalance.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\services\LogInService.java
+C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\config\WebFluxConfig.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\LogInObject.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\models\BalanceModels\Assets.java
 C:\Users\Rafa\Desktop\Who-Pays-TFG\Who-PaysRepository\src\main\java\whopays\groupexpenses\repositories\GroupExpensesRepository.java
