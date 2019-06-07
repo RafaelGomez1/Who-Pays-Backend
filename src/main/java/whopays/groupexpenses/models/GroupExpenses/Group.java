@@ -2,7 +2,6 @@ package whopays.groupexpenses.models.GroupExpenses;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,21 +15,18 @@ import java.util.List;
 public class Group {
 
     @Id
-    private ObjectId id;
+    private String id;
     private String groupName;
     private Date creationDate;
     private List<GroupUser> members;
     private List<GroupUser> admins;
     private List<GroupExpense> groupExpenses;
     private String imageURl;
-    private String idString;
 
     public Group() {
-        this.id = ObjectId.get();
         this.admins = new ArrayList<>();
         this.members = new ArrayList<>();
         this.groupExpenses = new ArrayList<>();
-        this.idString= this.id.toString();
     }
 
     public String getImageURl() {
@@ -41,11 +37,11 @@ public class Group {
         this.imageURl = imageURl;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,11 +85,4 @@ public class Group {
         this.groupExpenses = groupExpenses;
     }
 
-    public String getIdString() {
-        return idString;
-    }
-
-    public void setIdString(String idString) {
-        this.idString = idString;
-    }
 }
