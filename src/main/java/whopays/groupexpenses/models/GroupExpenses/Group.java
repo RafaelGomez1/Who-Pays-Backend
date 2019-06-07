@@ -23,12 +23,14 @@ public class Group {
     private List<GroupUser> admins;
     private List<GroupExpense> groupExpenses;
     private String imageURl;
+    private String idString;
 
     public Group() {
         this.id = ObjectId.get();
         this.admins = new ArrayList<>();
         this.members = new ArrayList<>();
         this.groupExpenses = new ArrayList<>();
+        this.idString= this.id.toString();
     }
 
     public String getImageURl() {
@@ -85,5 +87,13 @@ public class Group {
 
     public void setGroupExpenses(List<GroupExpense> groupExpenses) {
         this.groupExpenses = groupExpenses;
+    }
+
+    public String getIdString() {
+        return idString;
+    }
+
+    public void setIdString(String idString) {
+        this.idString = idString;
     }
 }
