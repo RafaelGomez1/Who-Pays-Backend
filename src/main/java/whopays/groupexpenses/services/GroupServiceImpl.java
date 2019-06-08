@@ -85,7 +85,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Mono<ResponseEntity<Group>> deleteExpensesFromGroup(ObjectId groupExpensesId, String groupId) {
+    public Mono<ResponseEntity<Group>> deleteExpensesFromGroup(String groupExpensesId, String groupId) {
         return groupRepository.findById(groupId)
                 .flatMap(group -> {
                     group.setGroupExpenses(removeExpenses(groupExpensesId, group.getGroupExpenses()));
@@ -143,7 +143,7 @@ public class GroupServiceImpl implements GroupService {
         return members.stream().anyMatch(member -> member.equals(user));
     }
 
-    private List<GroupExpense> removeExpenses(ObjectId groupExpensesId, List<GroupExpense> list) {
+    private List<GroupExpense> removeExpenses(String groupExpensesId, List<GroupExpense> list) {
         return list.stream()
                 .filter(groupExpense -> !groupExpense.getId().equals(groupExpensesId))
                 .collect(Collectors.toList());

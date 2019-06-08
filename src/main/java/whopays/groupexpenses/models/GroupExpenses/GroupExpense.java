@@ -17,7 +17,7 @@ import java.util.Objects;
 public class GroupExpense {
 
     @Id
-    private ObjectId id;
+    private String id;
     private String concept;
     private double totalQuantity;
     private double totalDebt;
@@ -30,16 +30,15 @@ public class GroupExpense {
     private List<Payment> payments;
 
     public GroupExpense() {
-        this.id = ObjectId.get();
         this.payments = new ArrayList<>();
         this.status = ExpenseStatus.NOT_PAID;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

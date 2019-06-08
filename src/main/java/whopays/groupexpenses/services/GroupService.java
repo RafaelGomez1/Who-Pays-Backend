@@ -18,7 +18,7 @@ public interface GroupService {
     Mono<ResponseEntity<Void>> deleteGroup(String groupdId);
     Mono<ResponseEntity<Group>> deleteUserFromGroup(String groupId, ObjectId userId);
     Mono<ResponseEntity<Group>> addExpensesToGroup( GroupExpense groupExpenses, String groupId);
-    Mono<ResponseEntity<Group>> deleteExpensesFromGroup(ObjectId groupExpensesId,  String groupId);
+    Mono<ResponseEntity<Group>> deleteExpensesFromGroup(String groupExpensesId, String groupId);
     Mono<ResponseEntity<Group>> updateExpensesFromGroup(GroupExpense groupExpenses, String groupId);
     Mono<ResponseEntity<Group>> addAdminToGroup(GroupUser admin, String groupId);
     Mono<ResponseEntity<Group>> removeAdminFromGroup(ObjectId admin, String groupId);

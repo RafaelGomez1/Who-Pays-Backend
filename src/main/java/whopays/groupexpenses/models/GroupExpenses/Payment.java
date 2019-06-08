@@ -9,7 +9,7 @@ public class Payment {
 
     @Id
     private ObjectId id;
-    private ObjectId groupExpensesId;
+    private String groupExpensesId;
     private String concept;
     private Date paymentDate;
     private Payer payer;
@@ -43,11 +43,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public ObjectId getGroupExpensesId() {
+    public String getGroupExpensesId() {
         return groupExpensesId;
     }
 
-    public void setGroupExpensesId(ObjectId groupExpensesId) {
+    public void setGroupExpensesId(String groupExpensesId) {
         this.groupExpensesId = groupExpensesId;
     }
 

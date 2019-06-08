@@ -68,7 +68,7 @@ public class GroupController {
     }
 
     @PostMapping("groups/{groupId}/expenses/delete")
-    public  Mono<ResponseEntity<Group>> deleteExpensesFromGroup(@RequestBody ObjectId groupExpensesId,
+    public  Mono<ResponseEntity<Group>> deleteExpensesFromGroup(@RequestBody String groupExpensesId,
                                                                 @PathVariable("groupId") String groupId) {
        return groupService.deleteExpensesFromGroup(groupExpensesId, groupId);
     }
