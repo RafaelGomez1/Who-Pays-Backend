@@ -25,8 +25,8 @@ public class GroupBalanceServiceImpl implements GroupBalanceService{
         this.groupRepository = groupRepository;
     }
 
-    public Mono<GroupBalance> getGroupBalanceWithFilter(ObjectId groupId) {
-        Mono<Group> recoveredGroup = groupRepository.findById(groupId.toString());
+    public Mono<GroupBalance> getGroupBalanceWithFilter(String groupId) {
+        Mono<Group> recoveredGroup = groupRepository.findById(groupId);
         return recoveredGroup.flatMap(group -> {
             List<GroupUser> userGroup = group.getMembers();
             GroupBalance groupBalance = new GroupBalance();

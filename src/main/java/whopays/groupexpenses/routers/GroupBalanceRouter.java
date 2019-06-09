@@ -17,7 +17,7 @@ public class GroupBalanceRouter {
     @Bean
     public RouterFunction<ServerResponse> groupBalanceRoute(GroupBalanceHandler groupBalanceHandler) {
         return RouterFunctions
-                .route(GET("/groups/filtered/balance").and(accept(MediaType.APPLICATION_JSON)),
+                .route(GET("/groups/{groupId}/filtered/balance").and(accept(MediaType.APPLICATION_JSON)),
                         groupBalanceHandler::getGroupBalanceFiltered);
     }
 
