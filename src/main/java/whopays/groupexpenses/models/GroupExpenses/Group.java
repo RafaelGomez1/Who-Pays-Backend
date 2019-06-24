@@ -1,5 +1,6 @@
 package whopays.groupexpenses.models.GroupExpenses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -17,6 +18,7 @@ public class Group {
     @Id
     private String id;
     private String groupName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date creationDate;
     private List<GroupUser> members;
     private List<GroupUser> admins;

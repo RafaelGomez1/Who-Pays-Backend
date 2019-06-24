@@ -1,5 +1,6 @@
 package whopays.groupexpenses.services;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Mono<Group> findById(String id) {
-        return groupRepository.findById(id);
+       return groupRepository.findById(id);
     }
 
     @Override

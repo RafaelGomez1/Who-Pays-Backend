@@ -1,5 +1,6 @@
 package whopays.groupexpenses.models.GroupExpenses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -24,6 +25,7 @@ public class GroupExpense {
     private double totalDebtPaid;
     private List<Debtor> debtors;
     private List<Payer> payers;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date date;
     private Category category;
     private ExpenseStatus status;
